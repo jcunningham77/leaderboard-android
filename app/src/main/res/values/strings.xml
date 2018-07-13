@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">fooseBallLeaderboard</string>
+    <string name="input_tab_title">Input Results</string>
+    <string name="leaderboard_tab_title">Leaderboard</string>
+</resources>
