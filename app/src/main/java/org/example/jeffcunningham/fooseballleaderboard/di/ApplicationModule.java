@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import org.example.jeffcunningham.fooseballleaderboard.di.annotations.ApplicationContext;
+import org.example.jeffcunningham.fooseballleaderboard.repository.RankingsRepository;
+import org.example.jeffcunningham.fooseballleaderboard.repository.RankingsRepositoryImpl;
 import org.example.jeffcunningham.fooseballleaderboard.util.Logger;
 import org.example.jeffcunningham.fooseballleaderboard.util.LoggerImpl;
 
@@ -46,6 +48,9 @@ public class ApplicationModule {
     Logger provideLogger(LoggerImpl impl){
         return impl;
     }
+
+    @Provides
+    RankingsRepository provideRankingsRepository(RankingsRepositoryImpl impl){return impl;}
 
 
 //

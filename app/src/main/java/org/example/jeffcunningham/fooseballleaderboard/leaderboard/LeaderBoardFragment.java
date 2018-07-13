@@ -10,6 +10,11 @@ import android.view.ViewGroup;
 
 import org.example.jeffcunningham.fooseballleaderboard.MainActivity;
 import org.example.jeffcunningham.fooseballleaderboard.R;
+import org.example.jeffcunningham.fooseballleaderboard.bo.Player;
+import org.example.jeffcunningham.fooseballleaderboard.util.Constants;
+import org.example.jeffcunningham.fooseballleaderboard.util.Logger;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,6 +22,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LeaderBoardFragment extends Fragment {
+
+    private static final String TAG = "LeaderBoardFragment";
 
     @BindView(R.id.leaderboardRecyclerView)
     RecyclerView leaderboardRecyclerView;
@@ -26,6 +33,9 @@ public class LeaderBoardFragment extends Fragment {
 
     @Inject
     LeaderBoardPresenter leaderBoardPresenter;
+
+    @Inject
+    Logger logger;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +62,18 @@ public class LeaderBoardFragment extends Fragment {
         leaderboardRecyclerView.setLayoutManager(leaderboardLayoutManager);
         adapter = new LeaderBoardAdapter();
         leaderboardRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        List<Player> playerListPowerRankins;
+        List<Player> playerListMatchesWon;
+        List<Player> playerListMatchesPlayed;
+        playerListPowerRankins = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_POWER_RANKING);
+        playerListMatchesWon = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_MATCHES_WON);
+        playerListMatchesPlayed = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_MATCHES_PLAYED);
+        logger.error(TAG, "onStart: ");
     }
 
 }

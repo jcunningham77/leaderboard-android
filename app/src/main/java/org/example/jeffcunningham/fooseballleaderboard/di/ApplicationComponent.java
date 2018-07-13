@@ -3,6 +3,7 @@ package org.example.jeffcunningham.fooseballleaderboard.di;
 import android.app.Application;
 
 import org.example.jeffcunningham.fooseballleaderboard.MainApplication;
+import org.example.jeffcunningham.fooseballleaderboard.repository.RankingsRepository;
 import org.example.jeffcunningham.fooseballleaderboard.util.Logger;
 
 import javax.inject.Singleton;
@@ -18,6 +19,8 @@ public interface ApplicationComponent {
     //seems like we need these available to use the @Inject at field level
 
     Logger logger();
+
+    RankingsRepository rankingRepository();
 
 
 
