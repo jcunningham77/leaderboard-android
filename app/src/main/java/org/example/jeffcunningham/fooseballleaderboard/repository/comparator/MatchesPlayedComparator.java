@@ -12,9 +12,9 @@ public class MatchesPlayedComparator implements Comparator<Player> {
 
     @Override
     public int compare(Player player1, Player player2) {
-        if (player1.gamesPlayed>player2.gamesPlayed){
+        if (player1.matchesPlayed >player2.matchesPlayed){
             return -1;
-        } else if (player2.gamesPlayed>player1.gamesPlayed) {
+        } else if (player2.matchesPlayed >player1.matchesPlayed) {
             return 1;
         } else {
             return 0;

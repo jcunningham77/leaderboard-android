@@ -10,4 +10,5 @@ public class Constants {
     public static final String SORT_POWER_RANKING = "powerRanking";
     public static final String SORT_MATCHES_PLAYED = "matchesPlayed";
     public static final String SORT_MATCHES_WON = "matchesWon";
+
 }

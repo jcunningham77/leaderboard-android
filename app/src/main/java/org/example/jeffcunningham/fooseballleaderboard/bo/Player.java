@@ -2,14 +2,14 @@ package org.example.jeffcunningham.fooseballleaderboard.bo;
 
 public class Player {
 
-    public Player(String name, int gamesPlayed, int gamesWon) {
-        this.gamesPlayed = gamesPlayed;
-        this.gamesWon = gamesWon;
+    public Player(String name, int matchesPlayed, int matchesWon) {
+        this.matchesPlayed = matchesPlayed;
+        this.matchesWon = matchesWon;
         this.name = name;
     }
 
-    public int gamesPlayed;
-    public int gamesWon;
+    public int matchesPlayed;
+    public int matchesWon;
     public String name;
 
 }

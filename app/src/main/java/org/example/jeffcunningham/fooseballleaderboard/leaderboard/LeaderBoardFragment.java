@@ -29,6 +29,7 @@ public class LeaderBoardFragment extends Fragment {
     RecyclerView leaderboardRecyclerView;
 
     private RecyclerView.LayoutManager leaderboardLayoutManager;
+
     private LeaderBoardAdapter adapter;
 
     @Inject
@@ -60,20 +61,17 @@ public class LeaderBoardFragment extends Fragment {
         leaderboardRecyclerView.setHasFixedSize(true);
         leaderboardLayoutManager = new LinearLayoutManager(getActivity());
         leaderboardRecyclerView.setLayoutManager(leaderboardLayoutManager);
-        adapter = new LeaderBoardAdapter();
+        adapter = new LeaderBoardAdapter(logger);
         leaderboardRecyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onStart(){
         super.onStart();
-        List<Player> playerListPowerRankins;
-        List<Player> playerListMatchesWon;
-        List<Player> playerListMatchesPlayed;
-        playerListPowerRankins = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_POWER_RANKING);
-        playerListMatchesWon = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_MATCHES_WON);
-        playerListMatchesPlayed = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_MATCHES_PLAYED);
-        logger.error(TAG, "onStart: ");
+        List<Player> playerListPowerRankings;
+        playerListPowerRankings = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_POWER_RANKING);
+        adapter.setRankingList(playerListPowerRankings);
+
     }
 
 }

@@ -3,6 +3,7 @@ package org.example.jeffcunningham.fooseballleaderboard.di;
 import org.example.jeffcunningham.fooseballleaderboard.MainActivity;
 import org.example.jeffcunningham.fooseballleaderboard.di.annotations.PerActivity;
 import org.example.jeffcunningham.fooseballleaderboard.input.InputFragment;
+import org.example.jeffcunningham.fooseballleaderboard.leaderboard.LeaderBoardAdapter;
 import org.example.jeffcunningham.fooseballleaderboard.leaderboard.LeaderBoardFragment;
 
 import dagger.Component;
@@ -18,5 +19,6 @@ public interface MainComponent {
     void inject(MainActivity activity);
     void inject(LeaderBoardFragment fragment);
     void inject(InputFragment fragment);
+    void inject(LeaderBoardAdapter adapter);
 
 }
