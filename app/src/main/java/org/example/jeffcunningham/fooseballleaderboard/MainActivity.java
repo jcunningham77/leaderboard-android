@@ -68,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(listener);
 
         tabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
+
+        TabLayout.Tab tab = tabLayout.getTabAt(1);
+        tab.select();
     }
 
     /*
