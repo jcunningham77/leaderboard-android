@@ -53,25 +53,4 @@ public class ApplicationModule {
     @Singleton
     RankingsRepository provideRankingsRepository(RankingsRepositoryImpl impl){return impl;}
 
-
-//
-//    @Provides
-//    OkHttpClient provideHttpClient(){
-//        final int TIMEOUT_CONNECT = 1000;
-//        final int TIMEOUT_READ = 1000;
-//        final ConnectionPool CONNECTION_POOL = new ConnectionPool();
-//        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-//        // set your desired log level
-//        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-//
-//        OkHttpClient client = new OkHttpClient.Builder()
-//                .connectTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
-//                .readTimeout(TIMEOUT_READ,TimeUnit.MILLISECONDS)
-//                .connectionPool(CONNECTION_POOL)
-//                .addInterceptor(logging)
-//                .build();
-//        return client;
-//    }
-
-
 }
