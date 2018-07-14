@@ -50,6 +50,7 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Singleton
     RankingsRepository provideRankingsRepository(RankingsRepositoryImpl impl){return impl;}
 
 
