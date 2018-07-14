@@ -11,24 +11,28 @@
         android:id="@+id/player_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:text="TextView"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/matches_played"
         app:layout_constraintEnd_toStartOf="@+id/matches_played"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/matches_played"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/matches_won"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/player_name"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,9 +40,11 @@
         android:id="@+id/matches_won"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:text="TextView"
         app:layout_constraintBaseline_toBaselineOf="@+id/matches_played"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/matches_played" />
 </android.support.constraint.ConstraintLayout>
