@@ -8,6 +8,6 @@
     <string name="player_1_score">Player 1 Score</string>
     <string name="player_2_score">Player 2 Score</string>
     <string name="enter_score">Enter Score</string>
-    <string name="matches_played">Matches Played</string>
-    <string name="matches_won">Matches Won</string>
+    <string name="matches_played">Matches</string>
+    <string name="matches_won">Wins</string>
 </resources>
