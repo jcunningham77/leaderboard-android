@@ -11,6 +11,7 @@ import org.example.jeffcunningham.fooseballleaderboard.R;
 import org.example.jeffcunningham.fooseballleaderboard.bo.Player;
 import org.example.jeffcunningham.fooseballleaderboard.util.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LeaderBoardAdapter extends RecyclerView.Adapter {
@@ -29,7 +30,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter {
         this.logger = logger;
     }
 
-    private List<Player> rankings;
+    private List<Player> rankings = new ArrayList<Player>();
 
 
     @NonNull

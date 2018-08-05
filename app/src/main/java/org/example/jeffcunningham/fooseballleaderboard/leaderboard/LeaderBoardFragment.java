@@ -2,6 +2,7 @@ package org.example.jeffcunningham.fooseballleaderboard.leaderboard;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -68,9 +69,20 @@ public class LeaderBoardFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        List<Player> playerListPowerRankings;
+        final List<Player> playerListPowerRankings;
+
         playerListPowerRankings = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_POWER_RANKING);
-        adapter.setRankingList(playerListPowerRankings);
+        new Handler(
+
+        ).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                adapter.setRankingList(playerListPowerRankings);
+            }
+        },2000);
+
+
 
     }
 

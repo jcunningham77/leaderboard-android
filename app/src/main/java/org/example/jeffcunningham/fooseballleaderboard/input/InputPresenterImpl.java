@@ -12,6 +12,7 @@ public class InputPresenterImpl implements InputPresenter {
 
     @Inject
     public InputPresenterImpl() {
+
     }
 
     @Override
