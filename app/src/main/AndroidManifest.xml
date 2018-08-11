@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.example.jeffcunningham.fooseballleaderboard">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,13 +13,16 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:name="org.example.jeffcunningham.fooseballleaderboard.MainApplication"
         >
-        <activity android:name=".MainActivity">
+        <activity   android:name=".MainActivity"
+                    android:windowSoftInputMode="adjustResize|stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -4,9 +4,11 @@ import org.example.jeffcunningham.fooseballleaderboard.bo.Player;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 public interface LeaderBoardPresenter {
 
 
 
-    List<Player> getLeaderBoardData(String sortType);
+    Single<List<Player>> getLeaderBoardData(String sortType);
 }

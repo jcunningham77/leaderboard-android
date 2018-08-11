@@ -2,7 +2,6 @@ package org.example.jeffcunningham.fooseballleaderboard.leaderboard;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -71,19 +70,14 @@ public class LeaderBoardFragment extends Fragment {
         super.onStart();
         final List<Player> playerListPowerRankings;
 
-        playerListPowerRankings = leaderBoardPresenter.getLeaderBoardData(Constants.SORT_POWER_RANKING);
-        new Handler(
+                leaderBoardPresenter.getLeaderBoardData(Constants.SORT_POWER_RANKING).subscribe(x->adapter.setRankingList(x),e-> logger.error(TAG, "onStart: ",e ));
 
-        ).postDelayed(new Runnable() {
-            @Override
-            public void run() {
 
-                adapter.setRankingList(playerListPowerRankings);
-            }
-        },2000);
 
 
 
     }
+
+
 
 }

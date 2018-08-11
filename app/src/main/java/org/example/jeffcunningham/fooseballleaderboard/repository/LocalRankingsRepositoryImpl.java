@@ -18,10 +18,10 @@ import javax.inject.Inject;
 
 
 //todo move to Android library
-public class RankingsRepositoryImpl implements RankingsRepository {
+public class LocalRankingsRepositoryImpl implements RankingsRepository {
 
 
-    private static final String TAG = "RankingsRepositoryImpl";
+    private static final String TAG = "LocalRankingsRepositoryImpl";
     Map<String,Player> rankingsMap;
 
 
@@ -29,7 +29,7 @@ public class RankingsRepositoryImpl implements RankingsRepository {
     Logger logger;
 
     @Inject
-    public RankingsRepositoryImpl() {
+    public LocalRankingsRepositoryImpl() {
 
         rankingsMap = new HashMap<>();
 
