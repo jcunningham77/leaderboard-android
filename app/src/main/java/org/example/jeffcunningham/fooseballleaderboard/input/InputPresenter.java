@@ -4,7 +4,5 @@ import org.example.jeffcunningham.fooseballleaderboard.bo.Match;
 
 public interface InputPresenter {
 
-
-
-    void recordMatch(Match match);
+  void recordMatch(Match match);
 }

@@ -8,7 +8,7 @@ import io.reactivex.Single;
 
 public interface LeaderBoardPresenter {
 
+  Single<List<Player>> getLeaderBoardData(String sortType);
 
-
-    Single<List<Player>> getLeaderBoardData(String sortType);
+  void inputMatch();
 }

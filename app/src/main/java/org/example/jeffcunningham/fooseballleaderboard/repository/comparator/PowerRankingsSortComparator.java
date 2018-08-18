@@ -9,19 +9,19 @@ import java.util.Comparator;
  */
 public class PowerRankingsSortComparator implements Comparator<Player> {
 
-    @Override
-    public int compare(Player player1, Player player2) {
-        if (player1.matchesPlayed >player2.matchesPlayed){
-            return -1;
-        } else if (player2.matchesPlayed >player1.matchesPlayed) {
-            return 1;
-        } else if (player1.matchesWon >player2.matchesWon){
-            return -1;
-        } else if (player2.matchesWon >player1.matchesWon){
-            return 1;
-        } else {
-            return 0;
-        }
-
+  @Override
+  public int compare(Player player1, Player player2) {
+    if (player1.matchesPlayed > player2.matchesPlayed) {
+      return -1;
+    } else if (player2.matchesPlayed > player1.matchesPlayed) {
+      return 1;
+    } else if (player1.matchesWon > player2.matchesWon) {
+      return -1;
+    } else if (player2.matchesWon > player1.matchesWon) {
+      return 1;
+    } else {
+      return 0;
     }
+
+  }
 }

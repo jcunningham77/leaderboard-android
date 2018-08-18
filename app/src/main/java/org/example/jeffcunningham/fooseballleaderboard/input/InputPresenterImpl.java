@@ -10,25 +10,25 @@ import javax.inject.Inject;
 public class InputPresenterImpl implements InputPresenter {
 
 
-    RemoteRankingsRepository rankingsRepository;
-    Logger logger;
+  RemoteRankingsRepository rankingsRepository;
+  Logger logger;
 
-    private static final String TAG = "InputPresenterImpl";
+  private static final String TAG = "InputPresenterImpl";
 
-    @Inject
-    public InputPresenterImpl(RemoteRankingsRepositoryImpl remoteRankingsRepositoryImpl, Logger logger) {
-        this.rankingsRepository = remoteRankingsRepositoryImpl;
-        this.logger = logger;
+  @Inject
+  public InputPresenterImpl(RemoteRankingsRepositoryImpl remoteRankingsRepositoryImpl,
+      Logger logger) {
+    this.rankingsRepository = remoteRankingsRepositoryImpl;
+    this.logger = logger;
 
-    }
+  }
 
-    @Override
-    public void recordMatch(Match match) {
+  @Override
+  public void recordMatch(Match match) {
 
-        rankingsRepository.inputMatchObservable(match).subscribe(matchResult -> logger.info(TAG,"Consuming item " + matchResult),e->logger.error(TAG,e.getMessage()));
+    rankingsRepository.inputMatchObservable(match)
+        .subscribe(matchResult -> logger.info(TAG, "Consuming item " + matchResult),
+            e -> logger.error(TAG, e.getMessage()));
 
-
-
-
-    }
+  }
 }

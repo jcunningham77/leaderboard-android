@@ -16,24 +16,25 @@ import io.reactivex.schedulers.Schedulers;
 public class RemoteRankingsRepositoryImpl implements RemoteRankingsRepository {
 
 
-    @Inject
-    RankingsAPI rankingsAPI;
+  @Inject
+  RankingsAPI rankingsAPI;
 
-    @Inject
-    public RemoteRankingsRepositoryImpl(){
+  @Inject
+  public RemoteRankingsRepositoryImpl() {
 
+  }
 
-    }
+  @Override
+  public Single<List<Player>> getRankings(String sortType) {
+    return rankingsAPI.getRankings().subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
 
-    @Override
-    public Single<List<Player>> getRankings(String sortType) {
-        return rankingsAPI.getRankings().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-    }
+  @Override
+  public Single<MatchResult> inputMatchObservable(Match match) {
+    return rankingsAPI.saveMatch(match).subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
 
-    @Override
-    public Single<MatchResult> inputMatchObservable(Match match) {
-        return rankingsAPI.saveMatch(match).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-
-    }
+  }
 
 }
