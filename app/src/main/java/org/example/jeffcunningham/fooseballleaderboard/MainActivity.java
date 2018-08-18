@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.WindowManager;
 
 import org.example.jeffcunningham.fooseballleaderboard.di.DaggerMainComponent;
 import org.example.jeffcunningham.fooseballleaderboard.di.MainComponent;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
 
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
 
-        TabLayout.Tab tab = tabLayout.getTabAt(1);
+        TabLayout.Tab tab = tabLayout.getTabAt(0);
         tab.select();
     }
 

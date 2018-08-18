@@ -19,44 +19,50 @@
         android:progressTint="@color/colorAccent"
         android:visibility="invisible" />
 
+    <!--<ImageView-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="158dp"-->
+        <!--android:scaleType="fitXY"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/label"-->
+        <!--app:srcCompat="@drawable/fooseball_splash" />-->
+
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/please_input_match_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/player1Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="@string/player_1_name"
         android:inputType="textPersonName"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/player1Score"
-        app:layout_constraintEnd_toStartOf="@+id/player1Score"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/player2Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
+
         android:hint="@string/player_2_name"
         android:inputType="textPersonName"
         android:textSize="14sp"
-
-        app:layout_constraintEnd_toStartOf="@+id/player2Score"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player1Name" />
 
@@ -64,30 +70,27 @@
         android:id="@+id/player1Score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="@string/player_1_score"
         android:inputType="number"
-        android:textSize="14sp"
         android:nextFocusRight="@id/player2Name"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/player1Name"
         app:layout_constraintTop_toBottomOf="@+id/label" />
 
     <EditText
         android:id="@+id/player2Score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/player_2_score"
         android:inputType="number"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/player2Name"
-        app:layout_constraintTop_toBottomOf="@+id/player1Score" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/player2Name"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button"
@@ -99,19 +102,11 @@
         android:text="@string/enter_score"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player2Name"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintVertical_bias="0.086" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="158dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fooseball_splash" />
+
 
 </android.support.constraint.ConstraintLayout>
