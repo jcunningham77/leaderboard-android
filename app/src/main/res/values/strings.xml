@@ -13,6 +13,7 @@
 
 
     <string-array name="score_array">
+        <item>Score</item>
         <item>0</item>
         <item>1</item>
         <item>2</item>
