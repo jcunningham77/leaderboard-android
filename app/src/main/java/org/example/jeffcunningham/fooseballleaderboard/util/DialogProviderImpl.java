@@ -1,9 +1,7 @@
 package org.example.jeffcunningham.fooseballleaderboard.util;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnShowListener;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,7 +9,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import javax.inject.Inject;
@@ -33,15 +30,15 @@ public class DialogProviderImpl implements DialogProvider, OnItemSelectedListene
 
   }
 
-  public Dialog provideMatchInputDialog(Callback<Match> callback) {
+  public void provideMatchInputDialog(Callback<Match> callback) {
     AlertDialog.Builder builder = new AlertDialog.Builder(activity,
         R.style.AppCompatAlertDialogStyle);
     builder.setTitle(R.string.input_dialog_title);
-    View view = activity.getLayoutInflater().inflate(R.layout.match_input_dialog, null);
-    builder.setView(view);
+    View dialogView = activity.getLayoutInflater().inflate(R.layout.match_input_dialog, null);
+    builder.setView(dialogView);
     builder.setOnCancelListener(DialogInterface::dismiss);
-    Spinner player1ScoreSpinner = view.findViewById(R.id.player1Score);
-    Spinner player2ScoreSpinner = view.findViewById(R.id.player2Score);
+    Spinner player1ScoreSpinner = dialogView.findViewById(R.id.player1Score);
+    Spinner player2ScoreSpinner = dialogView.findViewById(R.id.player2Score);
     ArrayAdapter<CharSequence> player1ScoreAdapter = ArrayAdapter.createFromResource(this.activity.getBaseContext(),R.array.score_array,android.R.layout.simple_spinner_item);
     ArrayAdapter<CharSequence> player2ScoreAdapter = ArrayAdapter.createFromResource(this.activity.getBaseContext(),R.array.score_array,android.R.layout.simple_spinner_item);
 
@@ -66,12 +63,9 @@ public class DialogProviderImpl implements DialogProvider, OnItemSelectedListene
     builder.setCancelable(true);
 
     AlertDialog dialog = builder.create();
+    dialog.show();
 
-    dialog.setOnShowListener(new OnShowListener() {
-      @Override
-      public void onShow(DialogInterface dialogInterface) {
-        Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
-        button.setOnClickListener(new View.OnClickListener() {
+    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
 
           @Override
           public void onClick(View view) {
@@ -80,37 +74,33 @@ public class DialogProviderImpl implements DialogProvider, OnItemSelectedListene
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
             );
 
-            TextInputLayout player1TextInputLayout = view.findViewById(R.id.player1NameInputLayout);
-            EditText player1Name = view.findViewById(R.id.player1Name);
-            player1Name = DialogProviderImpl.this.activity.findViewById(R.id.player1Name);
-            EditText player2Name = view.findViewById(R.id.player2Name);
+            TextInputLayout player1TextInputLayout = dialogView.findViewById(R.id.player1NameInputLayout);
+            EditText player1Name = dialogView.findViewById(R.id.player1Name);
+
+            EditText player2Name = dialogView.findViewById(R.id.player2Name);
 
 
 
 
-            if(validateEditText(player1Name,player1TextInputLayout)){
+            if(DialogProviderImpl.this.validateEditText(player1Name,player1TextInputLayout)){
               Match match = new Match(player1Name.getText().toString(),
                   player2Name.getText().toString(),
                   player1Score,
                   player2Score);
               logger.info(TAG, "provideMatchInputDialog: match =" + match.toString());
               callback.onEnter(match);
-            } else {
               dialog.dismiss();
             }
 
           }
         });
       }
-    });
-
-    return dialog;
-
-  }
 
 
 
-  private boolean validateEditText(EditText editText, TextInputLayout textInputLayout) {
+
+
+  public boolean validateEditText(EditText editText, TextInputLayout textInputLayout) {
 
     if (editText.getText()!=null&&editText.getText().toString().trim().isEmpty()) {
       textInputLayout.setError(this.activity.getString(R.string.player_1_name));

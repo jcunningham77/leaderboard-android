@@ -1,6 +1,5 @@
 package org.example.jeffcunningham.fooseballleaderboard.leaderboard;
 
-import android.app.Dialog;
 import io.reactivex.Single;
 import java.util.List;
 import javax.inject.Inject;
@@ -35,7 +34,7 @@ public class LeaderBoardPresenterImpl implements LeaderBoardPresenter {
   }
 
   public void inputMatch() {
-    final Dialog alert = dialogProvider.provideMatchInputDialog(match -> {
+    dialogProvider.provideMatchInputDialog(match -> {
       rankingsRepository.inputMatchObservable(match)
           .subscribe(
               matchResult -> {
@@ -46,6 +45,6 @@ public class LeaderBoardPresenterImpl implements LeaderBoardPresenter {
 
 
     });
-    alert.show();
+
   }
 }
