@@ -21,96 +21,94 @@ import javax.inject.Inject;
 public class LocalRankingsRepositoryImpl implements RankingsRepository {
 
 
-    private static final String TAG = "LocalRankingsRepositoryImpl";
-    Map<String,Player> rankingsMap;
+  private static final String TAG = "LocalRankingsRepositoryImpl";
+  Map<String, Player> rankingsMap;
 
 
-    @Inject
-    Logger logger;
+  @Inject
+  Logger logger;
 
-    @Inject
-    public LocalRankingsRepositoryImpl() {
+  @Inject
+  public LocalRankingsRepositoryImpl() {
 
-        rankingsMap = new HashMap<>();
+    rankingsMap = new HashMap<>();
 
-        rankingsMap.put("Diego",new Player("Diego",8,5));
-        rankingsMap.put("Amos",new Player("Amos",12,5));
-        rankingsMap.put("Joel",new Player("Joel",3,2));
-        rankingsMap.put("Tim",new Player("Tim",5,2));
+    rankingsMap.put("Diego", new Player("Diego", 8, 5));
+    rankingsMap.put("Amos", new Player("Amos", 12, 5));
+    rankingsMap.put("Joel", new Player("Joel", 3, 2));
+    rankingsMap.put("Tim", new Player("Tim", 5, 2));
 
+
+  }
+
+  @Override
+  public List<Player> getRankings(String sortType) {
+    logger.info(TAG, "getRankings() called with: sortType = [" + sortType + "]");
+
+    List<Player> playerList = new ArrayList<>(rankingsMap.values());
+
+    switch (sortType) {
+      case Constants.SORT_POWER_RANKING:
+        Collections.sort(playerList, new PowerRankingsSortComparator());
+        break;
+      case Constants.SORT_MATCHES_PLAYED:
+        Collections.sort(playerList, new MatchesPlayedComparator());
+        break;
+      case Constants.SORT_MATCHES_WON:
+        Collections.sort(playerList, new MatchesWonComparator());
+        break;
+    }
+
+    return playerList;
+  }
+
+  @Override
+  public void inputMatch(Match match) {
+
+    //determine if there was a winner
+    if (match.player2Score - match.player1Score != 0) {
+      if (match.player1Score > match.player2Score) {
+        upsertRankingWithMatchPlayedAndWin(match.player1Name);
+        upsertRankingWithMatchPlayed(match.player2Name);
+      } else {
+        upsertRankingWithMatchPlayedAndWin(match.player2Name);
+        upsertRankingWithMatchPlayed(match.player1Name);
+      }
+    } else {//the match was a tie, so just update the matches played statistic
+
+      upsertRankingWithMatchPlayed(match.player1Name);
+      upsertRankingWithMatchPlayed(match.player2Name);
 
     }
 
-    @Override
-    public List<Player> getRankings(String sortType) {
-        logger.info(TAG, "getRankings() called with: sortType = [" + sortType + "]");
-
-        List<Player> playerList = new ArrayList<>(rankingsMap.values());
-
-        switch (sortType){
-            case Constants.SORT_POWER_RANKING:
-                Collections.sort(playerList, new PowerRankingsSortComparator());
-                break;
-            case Constants.SORT_MATCHES_PLAYED:
-                Collections.sort(playerList, new MatchesPlayedComparator());
-                break;
-            case Constants.SORT_MATCHES_WON:
-                Collections.sort(playerList, new MatchesWonComparator());
-                break;
-        }
+  }
 
 
-        return playerList;
-    }
+  public void upsertRankingWithMatchPlayed(String playerName) {
 
-    @Override
-    public void inputMatch(Match match) {
-
-        //determine if there was a winner
-        if(match.player2Score-match.player1Score!=0){
-            if(match.player1Score>match.player2Score){
-                upsertRankingWithMatchPlayedAndWin(match.player1Name);
-                upsertRankingWithMatchPlayed(match.player2Name);
-            } else {
-                upsertRankingWithMatchPlayedAndWin(match.player2Name);
-                upsertRankingWithMatchPlayed(match.player1Name);
-            }
-        } else {//the match was a tie, so just update the matches played statistic
-
-            upsertRankingWithMatchPlayed(match.player1Name);
-            upsertRankingWithMatchPlayed(match.player2Name);
-
-        }
-
+    if (rankingsMap.containsKey(playerName)) {
+      Player player = rankingsMap.get(playerName);
+      player.matchesPlayed++;
+      rankingsMap.put(playerName, player);
+    } else {
+      rankingsMap.put(playerName, new Player(playerName, 1, 0));
     }
 
 
+  }
 
-    public void upsertRankingWithMatchPlayed(String playerName){
+  public void upsertRankingWithMatchPlayedAndWin(String playerName) {
 
-        if(rankingsMap.containsKey(playerName)){
-            Player player = rankingsMap.get(playerName);
-            player.matchesPlayed++;
-            rankingsMap.put(playerName,player);
-        } else {
-            rankingsMap.put(playerName,new Player(playerName,1,0));
-        }
-
-
+    if (rankingsMap.containsKey(playerName)) {
+      Player player = rankingsMap.get(playerName);
+      player.matchesPlayed++;
+      player.matchesWon++;
+      rankingsMap.put(playerName, player);
+    } else {
+      rankingsMap.put(playerName, new Player(playerName, 1, 1));
     }
 
-    public void upsertRankingWithMatchPlayedAndWin(String playerName){
-
-        if(rankingsMap.containsKey(playerName)){
-            Player player = rankingsMap.get(playerName);
-            player.matchesPlayed++;
-            player.matchesWon++;
-            rankingsMap.put(playerName,player);
-        } else {
-            rankingsMap.put(playerName,new Player(playerName,1,1));
-        }
-
-    }
+  }
 
 
 }

@@ -9,7 +9,8 @@ import java.util.List;
 import io.reactivex.Single;
 
 public interface RemoteRankingsRepository {
-    Single<List<Player>> getRankings(String sortType);
 
-    Single<MatchResult> inputMatchObservable(Match match);
+  Single<List<Player>> getRankings(String sortType);
+
+  Single<MatchResult> inputMatchObservable(Match match);
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RankingsRepository {
 
-    List<Player> getRankings(String sortType);
+  List<Player> getRankings(String sortType);
 
-    void inputMatch(Match match);
+  void inputMatch(Match match);
 }

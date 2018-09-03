@@ -16,84 +16,85 @@ import java.util.List;
 
 public class LeaderBoardAdapter extends RecyclerView.Adapter {
 
-    private static final int TYPE_HEADER = 0;
-    private static final int TYPE_ITEM = 1;
+  private static final int TYPE_HEADER = 0;
+  private static final int TYPE_ITEM = 1;
 
-    private static final String TAG = "LeaderBoardAdapter";
+  private static final String TAG = "LeaderBoardAdapter";
 
 
-    Logger logger;
+  Logger logger;
 
-    private Context context;
+  private Context context;
 
-    public LeaderBoardAdapter(Logger logger) {
-        this.logger = logger;
+  public LeaderBoardAdapter(Logger logger) {
+    this.logger = logger;
+  }
+
+  private List<Player> rankings = new ArrayList<Player>();
+
+
+  @NonNull
+  @Override
+  public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+    View view;
+
+    RecyclerView.ViewHolder viewHolder;
+    if (viewType == TYPE_ITEM) {
+      logger.info(TAG, "onCreateViewHolder: ");
+      view = LayoutInflater.from(parent.getContext())
+          .inflate(R.layout.player_view_holder, parent, false);
+      viewHolder = new PlayerViewHolder(view);
+    } else {
+      view = LayoutInflater.from(parent.getContext())
+          .inflate(R.layout.ranking_header_view_holder, parent, false);
+      viewHolder = new RankingHeaderViewHolder(view);
     }
 
-    private List<Player> rankings = new ArrayList<Player>();
+    return viewHolder;
+  }
 
+  @Override
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    if (rankings != null && rankings.size() > 1 && position > 0) {
 
-        View view;
-
-        RecyclerView.ViewHolder viewHolder;
-        if (viewType == TYPE_ITEM) {
-            logger.info(TAG, "onCreateViewHolder: ");
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_view_holder, parent, false);
-            viewHolder = new PlayerViewHolder(view);
-        } else {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ranking_header_view_holder, parent, false);
-            viewHolder = new RankingHeaderViewHolder(view);
-        }
-
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-
-        if (rankings != null && rankings.size() > 1 && position>0) {
-
-            ((PlayerViewHolder) holder).setPlayerName(rankings.get(position-1).name);
-            ((PlayerViewHolder) holder).setMatchesPlayed(rankings.get(position-1).matchesPlayed);
-            ((PlayerViewHolder) holder).setMatchesWon(rankings.get(position-1).matchesWon);
-
-        }
-    }
-
-
-    @Override
-    public int getItemCount() {
-        return rankings.size()+1;
-    }
-
-    void setRankingList(List<Player> rankings) {
-
-        this.rankings = rankings;
-
-        notifyDataSetChanged();
+      ((PlayerViewHolder) holder).setPlayerName(rankings.get(position - 1).name);
+      ((PlayerViewHolder) holder).setMatchesPlayed(rankings.get(position - 1).matchesPlayed);
+      ((PlayerViewHolder) holder).setMatchesWon(rankings.get(position - 1).matchesWon);
 
     }
-
-    @Override
-    public int getItemViewType(int position) {
-        if (isPositionHeader(position)) {
-            return TYPE_HEADER;
-
-        } else  {
-            return TYPE_ITEM;
-        }
+  }
 
 
+  @Override
+  public int getItemCount() {
+    return rankings.size() + 1;
+  }
+
+  void setRankingList(List<Player> rankings) {
+
+    this.rankings = rankings;
+
+    notifyDataSetChanged();
+
+  }
+
+  @Override
+  public int getItemViewType(int position) {
+    if (isPositionHeader(position)) {
+      return TYPE_HEADER;
+
+    } else {
+      return TYPE_ITEM;
     }
 
-    private boolean isPositionHeader(int position) {
-        return position == 0;
-    }
+
+  }
+
+  private boolean isPositionHeader(int position) {
+    return position == 0;
+  }
 
 
 }

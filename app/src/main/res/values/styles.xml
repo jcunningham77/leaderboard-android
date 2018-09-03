@@ -16,4 +16,15 @@
 
     </style>
 
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+        <item name="android:windowTitleStyle">@style/MyWindowTitleStyle</item>
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
+    <style name="MyWindowTitleStyle">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>
