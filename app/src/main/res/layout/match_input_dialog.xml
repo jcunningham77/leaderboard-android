@@ -7,91 +7,93 @@
   tools:layout_editor_absoluteY="25dp">
 
 
-    <TextView
-      android:id="@+id/title"
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      android:layout_marginTop="24dp"
-      android:layout_marginBottom="8dp"
-      android:ems="10"
-      android:text="@string/input_dialog_title"
-      app:layout_constraintBottom_toTopOf="@+id/player1NameInputLayout"
-      app:layout_constraintStart_toStartOf="@+id/player1NameInputLayout"
-      app:layout_constraintTop_toTopOf="parent"
-      />
+  <TextView
+    android:id="@+id/title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:layout_marginBottom="8dp"
+    android:ems="10"
+    android:text="@string/input_dialog_title"
+    app:layout_constraintBottom_toTopOf="@+id/player1NameInputLayout"
+    app:layout_constraintStart_toStartOf="@+id/player1NameInputLayout"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="@string/input_dialog_title"
+    />
 
-    <android.support.design.widget.TextInputLayout
-      android:id="@+id/player1NameInputLayout"
-      android:layout_width="wrap_content"
+  <android.support.design.widget.TextInputLayout
+    android:id="@+id/player1NameInputLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="16dp"
+    app:layout_constraintBottom_toTopOf="@+id/player2NameInputLayout"
+    app:layout_constraintEnd_toStartOf="@+id/player1Score"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title">
+
+    <EditText
+      android:id="@+id/player1Name"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="16dp"
-      android:layout_marginStart="24dp"
-      android:layout_marginEnd="16dp"
-      app:layout_constraintBottom_toTopOf="@+id/player2Name"
-      app:layout_constraintEnd_toStartOf="@+id/player1Score"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/title">
+      android:ems="10"
+      android:hint="@string/player_1_name"
+      android:inputType="textPersonName"/>
 
-        <EditText
-              android:id="@+id/player1Name"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-
-              android:ems="10"
-              android:hint="@string/player_1_name"
-              android:inputType="textPersonName"
-
-          />
-
-    </android.support.design.widget.TextInputLayout>
+  </android.support.design.widget.TextInputLayout>
 
 
+  <Spinner
+    android:id="@+id/player1Score"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="24dp"
+    android:dropDownWidth="wrap_content"
+    android:gravity="center"
+    android:hint="@string/enter_score"
+    android:inputType="number"
+    android:spinnerMode="dropdown"
+    app:layout_constraintBottom_toBottomOf="@+id/player1NameInputLayout"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/player1NameInputLayout"/>
 
-    <Spinner
-      android:id="@+id/player1Score"
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginBottom="8dp"
-      android:layout_marginEnd="24dp"
-      android:hint="@string/enter_score"
-      android:inputType="number"
-      android:dropDownWidth="wrap_content"
-      android:gravity="center"
-      android:spinnerMode="dropdown"
-
-      app:layout_constraintBottom_toBottomOf="@+id/player1NameInputLayout"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/player1NameInputLayout"/>
+  <android.support.design.widget.TextInputLayout
+    android:id="@+id/player2NameInputLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="16dp"
+    app:layout_constraintEnd_toStartOf="@+id/player2Score"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/player1NameInputLayout">
 
     <EditText
       android:id="@+id/player2Name"
-      android:layout_width="0dp"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="24dp"
-      android:layout_marginStart="24dp"
-      android:layout_marginEnd="16dp"
       android:ems="10"
       android:hint="@string/player_2_name"
-      android:inputType="textPersonName"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toStartOf="@+id/player2Score"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/player1NameInputLayout"/>
+      android:inputType="textPersonName"/>
 
-    <Spinner
-      android:id="@+id/player2Score"
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginBottom="8dp"
-      android:layout_marginEnd="24dp"
-      android:dropDownWidth="wrap_content"
-      android:gravity="center"
-      android:spinnerMode="dropdown"
-      app:layout_constraintBottom_toBottomOf="@+id/player2Name"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/player2Name"/>
+  </android.support.design.widget.TextInputLayout>
 
+  <Spinner
+    android:id="@+id/player2Score"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="24dp"
+    android:dropDownWidth="wrap_content"
+    android:gravity="center"
+    android:spinnerMode="dropdown"
+    app:layout_constraintBottom_toBottomOf="@+id/player2NameInputLayout"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/player2NameInputLayout"
+    app:layout_constraintVertical_bias="0.0"/>
 
 </android.support.constraint.ConstraintLayout>

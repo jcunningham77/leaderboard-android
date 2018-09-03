@@ -3,8 +3,9 @@
     <string name="input_tab_title">Input Results</string>
     <string name="leaderboard_tab_title">Leaderboard</string>
     <string name="input_dialog_title">Please Input Match Score</string>
-    <string name="player_1_name">Player 1 Name</string>
-    <string name="player_2_name">Player 2 Name</string>
+    <string name="player_1_name">Name</string>
+    <string name="player_2_name">Name</string>
+    <string name="required">Required</string>
     <string name="player_1_score">Player 1 Score</string>
     <string name="player_2_score">Player 2 Score</string>
     <string name="enter_score">Enter Score</string>
